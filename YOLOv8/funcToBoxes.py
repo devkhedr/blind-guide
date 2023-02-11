@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+from python_translator import Translator
+#if you have an error"ModuleNotFoundError: No module named 'bs4'" write in the cmd "pip install bs4"
 def DivideImageIntoBox(H,W):
     XAxis=np.linspace(0,W,4,dtype=np.int32)
     YAxis=np.linspace(0,H,4,dtype=np.int32)
@@ -92,3 +94,7 @@ def iou(box1, box2):
     union_area = (box1_area + box2_area) - inter_area
     iou = inter_area / union_area
     return iou
+def Translation_with_libraries_from_english(text, language):
+    translator = Translator()
+    result = str(translator.translate(text, language, "english"))
+    return result
