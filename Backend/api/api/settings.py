@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'authentication',
     'users',
     # third party apps
+    'rest_framework',
+    'knox'
 ]
 
 MIDDLEWARE = [
