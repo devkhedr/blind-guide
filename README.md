@@ -6,6 +6,9 @@
 ```Bash
 git clone https://github.com/MohamedKhedr07/blind-guide.git
 ```
+```Bash
+cd blind-guide/
+```
 #### Run the API server
 
    - You should have python poetry installed on your local machine (poetry is python packages manager) [installing tutorial](https://python-poetry.org/docs/)
