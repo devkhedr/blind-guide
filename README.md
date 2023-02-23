@@ -15,15 +15,15 @@ cd blind-guide/
    - Run the following commands:
        - ```Bash
             cd Backend/
-            ```
+         ```
         If you run the API for the first time after cloning, run the following 2 commands
         - ```Bash
             poetry update
 
             poetry run python api/manage.py migrate
-            ```
+          ```
         then
         - ```Bash
             poetry run python api/manage.py runserver
-            ```
+          ```
         to start the API server.
