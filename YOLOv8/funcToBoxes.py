@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from python_translator import Translator
+
 #if you have an error"ModuleNotFoundError: No module named 'bs4'" write in the cmd "pip install bs4"
 def DivideImageIntoBox(H,W):
     XAxis=np.linspace(0,W,4,dtype=np.int32)
@@ -25,12 +26,6 @@ def showDivideImageIntoBox(image):
 	cv2.imshow('DivideImageIntoBox',img)
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
-def resize(image,scale=0.5):
-	img=image
-	height=int(img.shape[0]*(scale))
-	width=int(img.shape[1]*(scale))
-	img1=cv2.resize(img,(width,height),interpolation=cv2.INTER_AREA)
-	return img1
 def box_label(image, box, label='', color=(128, 128, 128), txt_color=(255, 255, 255)):
   lw = max(round(sum(image.shape) / 2 * 0.003), 2)
   p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
@@ -98,3 +93,18 @@ def Translation_with_libraries_from_english(text, language):
     translator = Translator()
     result = str(translator.translate(text, language, "english"))
     return result
+
+def Text(image,Box,cls,label,ln):
+    side=['in top left','in top','in top right','in left','in middle','in right','in bottom left','in bottom','in bottom right']
+    H,W=image.shape[:2]
+    BB=DivideImageIntoBox(H,W)
+    IOU=[]
+    text=[]
+    c=0
+    for box in Box:
+        for b in BB:
+            IOU.append(iou(box,b))
+        text.append(label[cls[c]+1]+' '+side[np.argmax(np.array(IOU))])
+        c+=1
+        IOU=[]
+    return Translation_with_libraries_from_english(text,ln)
