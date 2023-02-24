@@ -17,13 +17,13 @@ class DetectImage(APIView):
     def post(self, request):
         data = request.data
         encoded_image = data["image64"]
-        # with open("images.jpeg", "rb") as image_file:
+        # with open("photo_2023-02-24_22-13-37 (2).jpg", "rb") as image_file:
         #     encoded_image = base64.b64encode(image_file.read())   # testing local image and succeeded
         decoded_image = base64.b64decode(encoded_image)
         with open("decoded_image.png", "wb") as fh:
             fh.write(decoded_image)
         img = cv2.imdecode(np.frombuffer(decoded_image, np.uint8), -1)
-        print(encoded_image)
+        print("encoded = ", encoded_image)
         # results = self.yolo.predict(img)
         return Response(
             {
