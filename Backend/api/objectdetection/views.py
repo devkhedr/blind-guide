@@ -1,27 +1,39 @@
-from django.shortcuts import render
-from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
-import requests
+from rest_framework import status
+import cv2
+import base64
+import numpy as np
+# from yolov8.yolov8 import YOLOv8  # Import the YOLOv8 model class
 # Create your views here.
 
 
 class DetectImage(APIView):
-    def post(self, request, *args, **kwargs):
+
+    # Load the YOLOv8 model once when the view is initialized
+    # def __init__(self):
+    #     self.yolo = YOLOv8()
+
+    def post(self, request):
         data = request.data
-        print(data["image"])
-        image_data = data['image']
-        # Run the image through the YOLOv8 model and get back the results 
+        encoded_image = data["image64"]
+        # with open("images.jpeg", "rb") as image_file:
+        #     encoded_image = base64.b64encode(image_file.read())   # testing local image and succeeded
+        decoded_image = base64.b64decode(encoded_image)
+        with open("decoded_image.png", "wb") as fh:
+            fh.write(decoded_image)
+        img = cv2.imdecode(np.frombuffer(decoded_image, np.uint8), -1)
+        print(encoded_image)
+        # results = self.yolo.predict(img)
         return Response(
             {
                 "result": "in progress",
-                "image": image_data
-            }
+            }, status=status.HTTP_200_OK
         )
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         return Response(
             {
                 "about-this-api": "send a post request by your image, and I will respond to you by results"
-            }
+            }, status=status.HTTP_200_OK
         )
