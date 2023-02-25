@@ -19,7 +19,7 @@ from django.views.debug import default_urlconf
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", default_urlconf),
-    path("",include('objectdetection.urls')),
+    path("", include("objectdetection.urls")),
 ]
