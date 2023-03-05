@@ -1,4 +1,3 @@
-from translate import Translator
 from ultralytics import YOLO
 import funcToBoxes as pb
 class YOLOv8():
@@ -43,20 +42,17 @@ class YOLOv8():
         self.side=['on the top left','on the top','on the top right','on the left','on the middle','on the right','on the bottom left','on the bottom','on the bottom right']
         self.model=YOLO('yolov8x.pt')
 
-    def predict(self,image,conf,ln):
+    def predict(self,image,conf):
         self.image=image
         self.conf=conf
-        self.ln=ln
-        self.translator= Translator(from_lang="en",to_lang=self.ln)
         self.results= self.model(self.image,conf=self.conf)
         self.text=pb.Text(self.image,
                       self.results[0].boxes.xyxy,
                       self.results[0].boxes.cls.numpy(),
                       self.labels,
                       self.side)
-        self.translation = [self.translator.translate(txt) for txt in self.text]
         self.image=pb.PlotBoxes(self.image,
                                 self.results[0].boxes.boxes,
                                 self.labels,
                                 self.colors)
-        return self.translation,self.image
+        return self.text,self.image
