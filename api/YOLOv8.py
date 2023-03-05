@@ -1,5 +1,5 @@
 from ultralytics import YOLO
-import FuncToBoxes as pb
+import api.FuncToBoxes as pb
 class YOLOv8():
     def __new__(cls):
         if not hasattr(cls, 'instance'):
