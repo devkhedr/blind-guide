@@ -55,4 +55,4 @@ class YOLOv8():
                       self.labels,
                       self.side)
         
-        return self.text,self.image
+        return self.text,self.image,self.results[0].boxes.boxes
