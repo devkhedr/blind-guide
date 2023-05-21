@@ -55,4 +55,4 @@ class YOLOv8():
                                 self.results[0].boxes.boxes,
                                 self.labels,
                                 self.colors)
-        return self.text,self.image,[box.tolist() for box in self.results[0].boxes.boxes.numpy()]
+        return self.text,self.image,self.results[0].boxes.boxes.numpy().tolist()
