@@ -36,3 +36,9 @@ The Blind Guide project aims to assist visually impaired individuals by utilizin
 
 ## Acknowledgements
 This project was created as a senior project by students from Beni-Suef University, Egypt, under the guidance of Dr. Hossam Moftah.
+**Presented by**:  
+- Mohamed Mahmoud Khedr Saad  
+- Omar Adly Abd El Halim Nagdy  
+- Mahmoud Saad Mahmoud Saleh  
+- Aya Maher Mohamed Galal  
+- Hager Sayed Moharam Gouda
